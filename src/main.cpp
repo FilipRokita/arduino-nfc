@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #include <Wire.h>
 #include <PN532_I2C.h>
 #include <PN532.h>
@@ -15,14 +16,27 @@ void setup() {
     nfc.begin();
 }
 
-// Function to clean the NFC tag
+// Function to check if the NFC tag is empty
+bool isTagEmpty() {
+    if (nfc.tagPresent()) {
+        NfcTag tag = nfc.read();
+        return !tag.hasNdefMessage(); // Return true if no NDEF message is found
+    }
+    return false;
+}
+
+// Function to clean the NFC tag only if it's not already empty
 bool cleanTag() {
+    if (isTagEmpty()) {
+        Serial.println("Tag is already empty. Skipping cleaning.");
+        return true;
+    }
     Serial.println("Cleaning tag...");
     bool cleaned = nfc.clean();
     if (cleaned) {
         Serial.println("Tag cleaned successfully.");
     } else {
-        Serial.println("Failed to clean the tag. The tag might be empty or not writable.");
+        Serial.println("Failed to clean the tag. It may not be writable.");
     }
     return cleaned;
 }
@@ -90,13 +104,14 @@ void readTag() {
 }
 
 void loop() {
+    Serial.println(); // Print a blank line for better readability
     Serial.println("Place an NFC tag to read or write.");
     
     if (nfc.tagPresent()) {
         Serial.println("Tag detected!");
         
         if (writeMode) {
-            // Execute cleaning, formatting, and writing in sequence
+            // Execute cleaning only if necessary, then format and write
             if (cleanTag() && formatTag()) {
                 writeTag();
             }
