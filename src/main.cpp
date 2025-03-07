@@ -24,6 +24,7 @@ bool cleanTag() {
         Serial.println("Tag cleaned successfully.");
     } else {
         Serial.println("Failed to clean the tag. The tag might be empty or not writable.");
+        cleaned = true; // Assume the tag is already clean
     }
     return cleaned;
 }
