@@ -16,10 +16,7 @@ It works with **Arduino-compatible** devices and uses **I2C** for communication.
 - **PlatformIO / Arduino IDE**
 
 ## Installation
-1. Clone this repository:
-   ```sh
-   git clone https://github.com/YOUR_USERNAME/NFC-Tag-Manager.git
-   ```
+1. Clone this repository.
 2. Open the project in **PlatformIO** or **Arduino IDE**.
 3. Install dependencies:
    - **Adafruit_PN532** library
