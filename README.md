@@ -48,6 +48,3 @@ It works with **Arduino-compatible** devices and uses **I2C** for communication.
 - **If formatting fails**, the tag may be locked or require a specific authentication key.
 - **If reading fails**, check wiring and make sure the tag is supported (**Mifare Classic**).
 - **If not working on iPhone**, ensure the tag is formatted for NDEF and contains a valid NDEF record.
-
-## License
-This project is **open-source** under the **MIT License**.
