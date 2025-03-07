@@ -35,7 +35,7 @@ It works with **Arduino-compatible** devices and uses **I2C** for communication.
 - Place an NFC tag near the reader.
 - It will:
   - Clean the tag.
-  - Format it (if needed).
+  - Format it.
   - Write a predefined **URL** to the tag.
 
 ### **2️⃣ Reading an NFC Tag**
@@ -47,8 +47,7 @@ It works with **Arduino-compatible** devices and uses **I2C** for communication.
 ## Troubleshooting
 - **If formatting fails**, the tag may be locked or require a specific authentication key.
 - **If reading fails**, check wiring and make sure the tag is supported (**Mifare Classic**).
-- **Not working on iPhone?**  
-  Ensure the tag is **formatted for NDEF** and contains **a valid NDEF record**.
+- **If not working on iPhone**, ensure the tag is formatted for NDEF and contains a valid NDEF record.
 
 ## License
 This project is **open-source** under the **MIT License**.
