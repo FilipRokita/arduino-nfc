@@ -21,10 +21,7 @@ It works with **Arduino-compatible** devices and uses **I2C** for communication.
    git clone https://github.com/FilipRokita/arduino-nfc
    ```
 2. Open the project in **PlatformIO** or **Arduino IDE**.
-3. Install dependencies:
-   - **Adafruit_PN532** library
-   - **NDEF library** (for handling NDEF messages)
-4. Connect your **PN532 module** via **I2C**:
+3. Connect your **PN532 module** via **I2C**:
    - `VCC` → `5V`
    - `GND` → `GND`
    - `SDA` → `A4`
