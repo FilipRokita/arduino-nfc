@@ -16,27 +16,14 @@ void setup() {
     nfc.begin();
 }
 
-// Function to check if the NFC tag is empty
-bool isTagEmpty() {
-    if (nfc.tagPresent()) {
-        NfcTag tag = nfc.read();
-        return !tag.hasNdefMessage(); // Return true if no NDEF message is found
-    }
-    return false;
-}
-
-// Function to clean the NFC tag only if it's not already empty
+// Function to clean the NFC tag
 bool cleanTag() {
-    if (isTagEmpty()) {
-        Serial.println("Tag is already empty. Skipping cleaning.");
-        return true;
-    }
     Serial.println("Cleaning tag...");
     bool cleaned = nfc.clean();
     if (cleaned) {
         Serial.println("Tag cleaned successfully.");
     } else {
-        Serial.println("Failed to clean the tag. It may not be writable.");
+        Serial.println("Failed to clean the tag. The tag might be empty or not writable.");
     }
     return cleaned;
 }
@@ -104,14 +91,14 @@ void readTag() {
 }
 
 void loop() {
-    Serial.println(); // Print a blank line for better readability
+    Serial.println(); // Print a new line for better readability
     Serial.println("Place an NFC tag to read or write.");
     
     if (nfc.tagPresent()) {
         Serial.println("Tag detected!");
         
         if (writeMode) {
-            // Execute cleaning only if necessary, then format and write
+            // Execute cleaning, formatting, and writing in sequence
             if (cleanTag() && formatTag()) {
                 writeTag();
             }
