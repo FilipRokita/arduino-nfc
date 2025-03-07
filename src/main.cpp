@@ -44,7 +44,7 @@ bool formatTag() {
 bool writeTag() {
     Serial.println("Writing URL to tag...");
     NdefMessage message;
-    message.addUriRecord("https://filiprokita.com"); // Change this URL to your desired link
+    message.addUriRecord("https://google.com/"); // Change this URL to your desired link
     
     bool written = nfc.write(message);
     if (written) {
