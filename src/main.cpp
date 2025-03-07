@@ -1,4 +1,3 @@
-#include <Arduino.h>
 #include <Wire.h>
 #include <PN532_I2C.h>
 #include <PN532.h>
@@ -75,7 +74,12 @@ void readTag() {
                 Serial.print("Record ");
                 Serial.print(i + 1);
                 Serial.print(": ");
-                Serial.println(record.getPayloadAsString());
+                
+                int payloadLength = record.getPayloadLength();
+                uint8_t payload[payloadLength];
+                record.getPayload(payload);
+                Serial.write(payload, payloadLength);
+                Serial.println();
             }
         } else {
             Serial.println("No NDEF Message found on this tag.");
